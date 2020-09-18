@@ -9,9 +9,13 @@ class App extends Component {
       isLoaded: false,
     }
   }
-
   componentDidMount() {
-    fetch('https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16/lat/58/data.json')
+    let testString;
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude, position.coords.longitude);
+      testString = "https://api.openweathermap.org/data/2.5/forecast?lat="+ position.coords.latitude + "&lon="+ position.coords.longitude+"&appid="+process.env.REACT_APP_API_KEY + "&units=metric"
+      console.log(testString)
+      fetch(testString)
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -19,9 +23,12 @@ class App extends Component {
           items: json,
         })
       })
+      console.log(this.state.items)
+    });
   }
   render() {
     let {isLoaded, items} = this.state;
+    console.log("AAAAAAAAAAAAAAAA")
     console.log(items.length)
     if(!isLoaded) {
       return <div>Loading...</div>
@@ -30,11 +37,6 @@ class App extends Component {
       return (
         <div className="App">
             <ul>
-              {/* {arrayofItems.map(item => (
-                <li key={item.timeSeries.validTime}>
-                  Name: {item.timeSeries[0].parameters} | Email: {item.email}
-                </li>
-              ))} */}
             </ul>
         </div>
     )
