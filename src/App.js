@@ -1,17 +1,20 @@
-import React, {useEffect} from 'react';
-import { fetchFromApi } from './lib/api';
+import React, { useEffect, useState } from 'react'
+import { fetchFromApi } from './lib/api'
 
-function App() {
-  useEffect(()=> {
+function App () {
+  const [data, setData] = useState({})
+  useEffect(() => {
     const fetch = async () => {
-      const data = await fetchFromApi()
-      console.log(data)
+      const temp = await fetchFromApi()
+      setData(temp)
     }
     fetch()
   })
   return (
-    <p>hello world</p>
+    <p>
+      {console.log(data.timeSeries)}
+    </p>
   )
 }
 
-export default App;
+export default App
