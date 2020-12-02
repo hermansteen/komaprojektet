@@ -1,19 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { fetchFromApi } from './lib/api'
+import React, { useEffect } from 'react'
+import { fetchFromApi, fetchFromApiLocationiq } from './lib/api'
+import DayInfo from './DayInfo.js'
+import './resources/css/app.css'
 
 function App () {
-  const [data, setData] = useState({})
+  let data = {}
+  data.timeSeries = {}
+  let city = {}
+  const fetchData = async () => {
+    data = await fetchFromApi()
+    city = await fetchFromApiLocationiq()
+    console.log(data)
+    console.log(city)
+  }
   useEffect(() => {
-    const fetch = async () => {
-      const temp = await fetchFromApi()
-      setData(temp)
-    }
-    fetch()
-  })
+    fetchData()
+    // eslint-disable-next-line
+  }, [])
   return (
-    <p>
-      {console.log(data.timeSeries)}
-    </p>
+    <div>
+      {data.timeSeries
+        ? <ul>
+          <DayInfo data={data.timeSeries[56]} />
+          </ul>
+        : null}
+    </div>
   )
 }
 

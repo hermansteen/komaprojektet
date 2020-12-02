@@ -13,6 +13,22 @@ export function fetchFromApi () {
         .then(res => res.json())
         .then(json => {
           // console.log(json)
+
+          resolve(json)
+        })
+    })
+  })
+}
+
+export function fetchFromApiLocationiq () {
+  let cityLink
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      cityLink = 'https://us1.locationiq.com/v1/reverse.php?key=pk.3c7d149b10792893ae85cb1c22148eca&lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&format=json'
+      // eslint-disable-next-line
+      fetch(cityLink)
+        .then(res => res.json())
+        .then(json => {
           resolve(json)
         })
     })
