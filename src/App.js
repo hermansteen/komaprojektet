@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { fetchFromApi, fetchFromApiLocationiq } from './lib/api'
-import DayInfo from './DayInfo.js'
+import HourList from './HourList.js'
+import Menu from './Menu.js'
+import SplashScreen from './SplashScreen.js'
 import './resources/css/app.css'
 
 function App () {
@@ -10,21 +12,27 @@ function App () {
     const fetchData = async () => {
       const data = await fetchFromApi()
       const city = await fetchFromApiLocationiq()
-      console.log(data)
-      console.log(city)
-      setData(data)
+      // console.log(data)
+      // console.log(city)
+      setData(data.timeSeries)
       setCity(city)
     }
     fetchData()
-    // eslint-disable-next-line
   }, [])
+  const date = new Date()
+  let dataToday
+  if (data) {
+    dataToday = data.filter(timeSerie => timeSerie.validTime.indexOf(date.toISOString().substr(0, 10)) > -1)
+    console.log(dataToday)
+  }
   return (
     <div>
       {data && city
         ? <div>
-          <DayInfo data={data} />
-          <p>{city.address.town}</p>
-          </div>
+          <Menu city={city.address.town} />
+          <SplashScreen data={dataToday} />
+          <HourList data={dataToday} />
+        </div>
         : null}
     </div>
   )
