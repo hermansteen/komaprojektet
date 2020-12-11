@@ -13,8 +13,8 @@ function HourList (props) {
   console.log('Hourlist: ')
   console.log(filteredHours)
   return (
-    <div>
-      {[filteredHours].map((hour, index) => <HourInfo data={hour[index]} key={hour[index].validTime} />)}
+    <div className='HourList'>
+      {Object.entries(filteredHours).map((hour) => <HourInfo data={hour} key={hour.validTime} />)}
     </div>
   )
 }

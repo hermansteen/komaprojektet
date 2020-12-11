@@ -1,11 +1,14 @@
 import React from 'react'
 function Menu (props) {
   return (
-    <div className='header'>
-      <h1>
-        {props.city}
-      </h1>
-      <img src='/src/resources/img/amburgur.png' />
+    <div className='Menu'>
+      <div id='leftSideMenu'>
+        <a href='/'><img src='./img/needle.svg' /></a>
+        <h1>
+          {props.city}
+        </h1>
+      </div>
+      <img src='./img/amburgur.png' />
     </div>
   )
 }

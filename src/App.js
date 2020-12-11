@@ -3,6 +3,7 @@ import { fetchFromApi, fetchFromApiLocationiq } from './lib/api'
 import HourList from './HourList.js'
 import Menu from './Menu.js'
 import SplashScreen from './SplashScreen.js'
+import RainGraph from './RainGraph.js'
 import './resources/css/app.css'
 
 function App () {
@@ -13,26 +14,28 @@ function App () {
       const data = await fetchFromApi()
       const city = await fetchFromApiLocationiq()
       // console.log(data)
-      // console.log(city)
+      console.log(city)
       setData(data.timeSeries)
       setCity(city)
     }
     fetchData()
   }, [])
-  const date = new Date()
   let dataToday
+  const tzoffset = (new Date()).getTimezoneOffset() * 60000 // offset in milliseconds
+  const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0)
   if (data) {
-    dataToday = data.filter(timeSerie => timeSerie.validTime.indexOf(date.toISOString().substr(0, 10)) > -1)
-    console.log(dataToday)
+    dataToday = data.filter(timeSerie => timeSerie.validTime.indexOf(localISOTime.substr(0, 10)) > -1)
   }
   return (
-    <div>
+    <div className='App'>
       {data && city
         ? <div>
           <Menu city={city.address.town} />
           <SplashScreen data={dataToday} />
           <HourList data={dataToday} />
-        </div>
+          <h2 class='interTitle'>Nederbörd (%)</h2>
+          <RainGraph data={dataToday} />
+          </div>
         : null}
     </div>
   )

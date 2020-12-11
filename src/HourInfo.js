@@ -1,12 +1,13 @@
 import React from 'react'
+import { findImageFile } from './lib/api.js'
 function HourInfo (props) {
   const timeSeries = {}
   console.log(props.data)
-  for (let i = 0; i < props.data.parameters.length; i++) {
-    const param = props.data.parameters[i]
+  for (let i = 0; i < props.data[1].parameters.length; i++) {
+    const param = props.data[1].parameters[i]
     switch (param.name) {
       case 't' :
-        timeSeries.temperature = param.values[0]
+        timeSeries.temperature = Math.round(param.values[0])
         break
       case 'Wsymb2':
         timeSeries.cat = param.values[0]
@@ -18,10 +19,13 @@ function HourInfo (props) {
         break
     }
   }
+  const time = props.data[1].validTime.substr(11, 5)
   // console.log(timeSeries)
   return (
     <div className='HourInfo'>
-      <h1>{timeSeries.temperature}</h1>
+      <p>{time}</p>
+      <img src={findImageFile(timeSeries.cat)} />
+      <p>{timeSeries.temperature + '\u00b0'}</p>
     </div>
   )
 }

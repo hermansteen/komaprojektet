@@ -33,3 +33,61 @@ export function fetchFromApiLocationiq () {
     })
   })
 }
+
+export function findImageFile (param) {
+  let result
+  const prefix = './img/'
+  switch (param) {
+    case 1:
+      result = prefix + 'clear.svg'
+      break
+    case 2:
+    case 3:
+    case 4:
+      result = prefix + 'halfclear.svg'
+      break
+    case 5:
+      result = prefix + 'cloudy.svg'
+      break
+    case 6:
+      result = prefix + 'overcast.svg'
+      break
+    case 7:
+      result = prefix + 'fog.svg'
+      break
+    case 8:
+    case 9:
+    case 10:
+    case 18:
+    case 19:
+    case 20:
+      result = prefix + 'rain.svg'
+      break
+    case 11:
+      result = prefix + 'thunderstorm.svg'
+      break
+    case 12:
+    case 13:
+    case 14:
+    case 22:
+    case 23:
+    case 24:
+      result = prefix + 'sleet.svg'
+      break
+    case 21 :
+      result = prefix + 'thunder.svg'
+      break
+    case 25:
+    case 26:
+    case 27:
+    case 15:
+    case 16:
+    case 17:
+      result = prefix + 'snow.svg'
+      break
+    default:
+      result = 'default'
+      break
+  }
+  return result
+}
