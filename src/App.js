@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchFromApi, fetchFromApiLocationiq } from './lib/api'
+import { fetchFromApi, fetchFromApiLocationiq, fetchFromApiFixed, fetchFromApiLocationiqFixed } from './lib/api'
 import HourList from './HourList.js'
 import Menu from './Menu.js'
 import SplashScreen from './SplashScreen.js'
@@ -12,14 +12,20 @@ function App () {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFromApi()
+      // const data = await fetchFromApiFixed()
       const city = await fetchFromApiLocationiq()
+      // const city = await fetchFromApiLocationiqFixed()
       // console.log(data)
       console.log(city)
       setData(data.timeSeries)
+      if (city.address.city) {
+        city.address.town = city.address.city
+      }
       setCity(city)
     }
     fetchData()
   }, [])
+
   let dataToday
   const tzoffset = (new Date()).getTimezoneOffset() * 60000 // offset in milliseconds
   const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0)
@@ -33,7 +39,7 @@ function App () {
           <Menu city={city.address.town} />
           <SplashScreen data={dataToday} />
           <HourList data={dataToday} />
-          <h2 class='interTitle'>Nederbörd (%)</h2>
+          <h2 className='interTitle'>Nederbörd (%)</h2>
           <RainGraph data={dataToday} />
           </div>
         : null}
