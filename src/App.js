@@ -16,7 +16,7 @@ function App () {
       const city = await fetchFromApiLocationiq()
       // const city = await fetchFromApiLocationiqFixed()
       // console.log(data)
-      console.log(city)
+      // console.log(city)
       setData(data.timeSeries)
       if (city.address.city) {
         city.address.town = city.address.city
@@ -41,7 +41,7 @@ function App () {
           <HourList data={dataToday} />
           <h2 className='interTitle'>Nederbörd (%)</h2>
           <RainGraph data={dataToday} />
-          </div>
+        </div>
         : null}
     </div>
   )
