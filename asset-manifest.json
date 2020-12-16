@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/komaprojektet/static/css/main.bc6e80e4.chunk.css",
-    "main.js": "/komaprojektet/static/js/main.7826cd34.chunk.js",
-    "main.js.map": "/komaprojektet/static/js/main.7826cd34.chunk.js.map",
+    "main.css": "/komaprojektet/static/css/main.2211fdfa.chunk.css",
+    "main.js": "/komaprojektet/static/js/main.b10d3770.chunk.js",
+    "main.js.map": "/komaprojektet/static/js/main.b10d3770.chunk.js.map",
     "runtime-main.js": "/komaprojektet/static/js/runtime-main.da73bd74.js",
     "runtime-main.js.map": "/komaprojektet/static/js/runtime-main.da73bd74.js.map",
     "static/js/2.76f79875.chunk.js": "/komaprojektet/static/js/2.76f79875.chunk.js",
     "static/js/2.76f79875.chunk.js.map": "/komaprojektet/static/js/2.76f79875.chunk.js.map",
     "index.html": "/komaprojektet/index.html",
-    "static/css/main.bc6e80e4.chunk.css.map": "/komaprojektet/static/css/main.bc6e80e4.chunk.css.map",
+    "static/css/main.2211fdfa.chunk.css.map": "/komaprojektet/static/css/main.2211fdfa.chunk.css.map",
     "static/js/2.76f79875.chunk.js.LICENSE.txt": "/komaprojektet/static/js/2.76f79875.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.da73bd74.js",
     "static/js/2.76f79875.chunk.js",
-    "static/css/main.bc6e80e4.chunk.css",
-    "static/js/main.7826cd34.chunk.js"
+    "static/css/main.2211fdfa.chunk.css",
+    "static/js/main.b10d3770.chunk.js"
   ]
 }
